@@ -1,0 +1,23 @@
+{
+  "name": "workingonclass",
+  "version": "1.0.0",
+  "description": "My groovy Nuxt.js project",
+  "author": "Kedra, Krystian",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.0.0",
+    "nuxt": "^1.0.0",
+    "sass": "^1.22.10",
+    "sass-loader": "^7.3.1",
+    "uuidv4": "^4.0.0"
+  },
+  "devDependencies": {
+    "cross-env": "^5.0.1"
+  }
+}
