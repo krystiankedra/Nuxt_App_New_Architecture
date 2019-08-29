@@ -1,34 +1,24 @@
 import UsersManagement from '~/management/UsersManagement'
-import UserManagement from '~/management/UserManagement'
-import ExceptionManagement from '~/management/ExceptionManagement';
-
-const usersManagement = new UsersManagement()
-const exceptionManagement = new ExceptionManagement()
+import * as MUTATIONS from '~/store/mutationTypes'
 
 export default {
+    createUsersManagement({ getters, commit }) {
+        try {
+            commit(MUTATIONS.CREATE_USERS_MANAGEMENT, new UsersManagement(getters, commit))
+        } catch (ex) {
+            console.log(ex)
+        }
+    },
     setUsersList({ commit }) {
         try {
             const response = [
-                { firstname: 'Krystian', lastname: 'Kędra', age: 25 },
-                { firstname: 'Paweł', lastname: 'Nowak', age: 27 }
+                { id: 1, firstname: 'Krystian', lastname: 'Kędra', age: 24 },
+                { id: 2, firstname: 'Mateusz', lastname: 'Kowalski', age: 34 },
+                { id: 3, firstname: 'Marek', lastname: 'Nowak', age: 27 },
             ]
-            usersManagement.setUsers(response, commit)
+            commit(MUTATIONS.SET_USERS_LIST, response)
         } catch (ex) {
-            exceptionManagement.provideToStateErrorMessage(ex, commit)
-        }
-    },
-    createUser({ commit }, payload) {
-        try {
-            usersManagement.createUser(new UserManagement(payload), commit)
-        } catch (ex) {
-            exceptionManagement.provideToStateErrorMessage(ex, commit)
-        }
-    },
-    deleteUser({ commit }, payload) {
-        try {
-            usersManagement.deleteUser(payload, commit)
-        } catch (ex) {
-            exceptionManagement.provideToStateErrorMessage(ex, commit)
+            console.log(ex)
         }
     }
 }

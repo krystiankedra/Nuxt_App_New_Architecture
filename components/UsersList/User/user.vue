@@ -1,12 +1,20 @@
 <template>
     <div class="card">
-        <img src="~/assets/user.png" class="card-img-top user-image">
         <div class="card-body">
-            <h5 class="card-title">{{ userFullName }}</h5>
-            <p class="card-text">Age: {{ user.age }}</p>
-        </div>
-        <div class="card-footer">
-            <button class="btn btn-outline-danger" @click="deleteUser(user.id)">Delete User</button>
+            <div class="row">
+                <div class="col-6">
+                    <img src="~/assets/user.png" class="card-img-top user-image">
+                </div>
+                <div class="col-6 pt-4">
+                    <button class="btn btn-outline-danger" @click="deleteUser(user.id)">Delete User</button>
+                </div>
+            </div>
+            <div class="row">
+                <h5>{{ userFullName }}</h5>
+            </div>
+            <div class="row">
+                <span>Age: {{ user.age }}</span>
+            </div>
         </div>
     </div>
 </template>

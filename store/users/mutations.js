@@ -1,11 +1,17 @@
 export default {
-    setUsersList(state, payload) {
-        state.users = payload
+    createUsersManagement(state, payload) {
+        state.usersManagement = payload
     },
-    createUser(state, payload) {
-        state.users = [...state.users, payload]
+    setUsersList(state, payload) {
+        state.usersList = payload
     },
     deleteUser(state, payload) {
-        state.users = state.users.filter(user => user.id !== payload)
+        state.usersList = state.usersList.filter(user => user.id !== payload)
+    },
+    createUser(state, payload) {
+        state.usersList = [...state.usersList, payload]
+    },
+    setSearchedPhrase(state, payload) {
+        state.searchedPhrase = payload
     }
 }

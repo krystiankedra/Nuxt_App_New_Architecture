@@ -1,22 +1,26 @@
 import * as MUTATIONS from '~/store/mutationTypes'
-import User from '~/management/UserManagement'
-
-
+import CreateUser from '~/management/CreateUser'
+import { filterUsersList } from '~/utils/Filters/filters'
 export default class UsersManagement {
 
-    constructor() {}
-
-    setUsers(users, commit) {
-        const usersList = users.map(user => new User(user))
-        commit(MUTATIONS.SET_USERS_LIST, usersList)
+    constructor(getters, commit) {
+        this.usersList = () => getters.getUsersList
+        this.searchedPhrase = () => getters.getSearchedPhrase
+        this.commit = commit
     }
 
-    createUser(user, commit) {
-        commit(MUTATIONS.CREATE_USER, user)
+    getUsersList() {
+        return this.usersList().filter(
+            filterUsersList(this.searchedPhrase())
+        )
     }
 
-    deleteUser(userId, commit) {
-        commit(MUTATIONS.DELETE_USER, userId)
+    createUser(user) {
+        this.commit(MUTATIONS.CREATE_USER, new CreateUser(user).getUser())
+    }
+
+    deleteUser(userId) {
+        this.commit(MUTATIONS.DELETE_USER, userId)
     }
 
 }

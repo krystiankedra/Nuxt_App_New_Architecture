@@ -16,7 +16,7 @@
                 <input v-model="newUser.age" type="number" class="form-control" placeholder="Enter age">
             </div>
             <div class="col-12 col-md-6 btn-create">
-                <button class="btn btn-primary" @click="createUser(newUser)">Create user</button>
+                <button class="btn btn-primary" @click="submit">Create user</button>
             </div>
         </div>
     </div>
@@ -37,6 +37,17 @@ export default {
         createUser: {
             type: Function,
             default: () => null
+        }
+    },
+    methods: {
+        clearForm() {
+            for (const formValue in this.newUser) {
+                this.newUser[formValue] = null
+            }
+        },
+        submit() {
+            this.createUser(this.newUser)
+            this.clearForm()
         }
     }
 }

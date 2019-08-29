@@ -1,3 +1,5 @@
 export default {
-    getUsers: state => state.users
+    getUsersManagement: state => state.usersManagement,
+    getUsersList: state => state.usersList,
+    getSearchedPhrase: state => state.searchedPhrase
 }

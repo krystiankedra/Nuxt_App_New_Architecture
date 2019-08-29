@@ -1,23 +1,41 @@
 <template>
-  <section>
+  <section class="container">
     <create-user :create-user="createUser" />
-    <hr class="col-10">
+    <hr class="col-12">
+    <input-emitter :value.sync="searchedPhrase" :placeholder="searchedPhrasePlaceholder" class="mb-3"/>
     <users-list :users-list="usersList" :delete-user="deleteUser" />
   </section>
 </template>
 
 <script>
 import * as ACTIONS from '~/store/actionTypes'
-import createUser from '~/components/CreateUser/createUser'
-import usersList from '~/components/UsersList/usersList'
+import * as MUTATIONS from '~/store/mutationTypes'
+const createUser = () => import('~/components/CreateUser/createUser')
+const usersList = () => import('~/components/UsersList/usersList')
+const inputEmitter = () => import('~/components/InputEmitter/inputEmitter')
 export default {
   components: {
     createUser,
-    usersList
+    usersList,
+    inputEmitter
   },
+  data: () => ({
+    searchedPhrasePlaceholder: 'Type User...'
+  }),
   computed: {
+    searchedPhrase: {
+      get() {
+        return this.$store.getters.getSearchedPhrase
+      },
+      set(newValue) {
+        this.$store.commit(MUTATIONS.SET_SEARCHED_PHRASE, newValue)
+      }
+    },
+    usersManagement() {
+      return this.$store.getters.getUsersManagement
+    },
     usersList() {
-      return this.$store.getters.getUsers
+      return this.usersManagement.getUsersList()
     }
   },
   created() {
@@ -25,10 +43,10 @@ export default {
   },
   methods: {
     createUser(newUser) {
-      this.$store.dispatch(ACTIONS.CREATE_USER, newUser)
+      this.usersManagement.createUser(newUser)
     },
     deleteUser(userId) {
-      this.$store.dispatch(ACTIONS.DELETE_USER, userId)
+      this.usersManagement.deleteUser(userId)
     }
   }
 }
