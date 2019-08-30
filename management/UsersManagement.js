@@ -5,13 +5,12 @@ export default class UsersManagement {
 
     constructor(getters, commit) {
         this.usersList = () => getters.getUsersList
-        this.searchedPhrase = () => getters.getSearchedPhrase
         this.commit = commit
     }
 
-    getUsersList() {
+    getUsersList(value) {
         return this.usersList().filter(
-            filterUsersList(this.searchedPhrase())
+            filterUsersList(value)
         )
     }
 

@@ -35,7 +35,7 @@ export default {
       return this.$store.getters.getUsersManagement
     },
     usersList() {
-      return this.usersManagement.getUsersList()
+      return this.usersManagement.getUsersList(this.searchedPhrase)
     }
   },
   created() {
