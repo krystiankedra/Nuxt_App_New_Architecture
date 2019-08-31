@@ -18,6 +18,9 @@
             <div v-if="!isReadOnlyView" class="row mt-2">
                 <button class="btn btn-outline-primary" @click="goToUserDetails(user.id)">Preview Details</button>
             </div>
+            <div v-if="!isReadOnlyView" class="row mt-2">
+                <button class="btn btn-outline-primary" @click="goToEditUser(user.id)">Edit</button>
+            </div>
         </div>
     </div>
 </template>
@@ -35,6 +38,10 @@ export default {
             default: () => null
         },
         goToUserDetails: {
+            type: Function,
+            default: () => null
+        },
+        goToEditUser: {
             type: Function,
             default: () => null
         },

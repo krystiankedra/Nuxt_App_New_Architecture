@@ -3,7 +3,12 @@
     <create-user :create-user="createUser" />
     <hr class="col-12">
     <input-emitter :value.sync="searchedPhrase" :placeholder="searchedPhrasePlaceholder" class="mb-3"/>
-    <users-list :users-list="usersList" :delete-user="deleteUser" :go-to-user-details="goToUserDetails" />
+    <users-list
+      :users-list="usersList"
+      :delete-user="deleteUser"
+      :go-to-user-details="goToUserDetails"
+      :go-to-edit-user="goToEditUser"
+    />
   </section>
 </template>
 
@@ -47,6 +52,9 @@ export default {
     },
     goToUserDetails(userId) {
       this.$router.push(`/user/${userId}`)
+    },
+    goToEditUser(userId) {
+      this.$router.push(`/user/edit/${userId}`)
     }
   }
 }

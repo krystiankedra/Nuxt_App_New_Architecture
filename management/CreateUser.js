@@ -1,9 +1,8 @@
-import uuid from 'uuidv4'
-
+import { generateRandomNumber } from '~/utils/utils'
 export default class CreateUser {
 
     constructor(user) {
-        this.user = { id: uuid(), ...user }
+        this.user = { id: generateRandomNumber(), ...user }
     }
 
     getUser() {

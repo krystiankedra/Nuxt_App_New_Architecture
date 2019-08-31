@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row mb-2 justify-content-end">
-            <button class="btn btn-outline-primary">
+            <button class="btn btn-outline-primary" @click="goBack()">
                 Go Back
             </button>
         </div>
@@ -25,6 +25,11 @@ export default {
     },
     data: () => ({
         isReadOnlyView: true
-    })
+    }),
+    methods: {
+        goBack() {
+            this.$router.push('/')
+        }
+    }
 }
 </script>

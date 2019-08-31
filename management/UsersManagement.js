@@ -6,7 +6,6 @@ export default class UsersManagement {
 
     constructor(getters, commit) {
         this.usersList = () => getters.getUsersList
-        this.userDetails = () => getters.getUserDetails
         this.commit = commit
     }
 
@@ -17,10 +16,6 @@ export default class UsersManagement {
     setUserDetails(userId) {
         const user = this.usersList().find(findUser(userId))
         this.commit(MUTATIONS.SET_USER_DETAILS, user)
-    }
-
-    getUserDetails() {
-        return this.userDetails()
     }
 
     createUser(user) {

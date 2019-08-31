@@ -1,13 +1,13 @@
 <template>
-    <user-details :user-details="userDetails" />
+    <edit-user :user-details="userDetails" :change-user-value="changeUserValue" />
 </template>
 
 <script>
 import * as ACTIONS from '~/store/actionTypes'
-const userDetails = () => import('~/components/UserDetails/userDetails')
+const editUser = () => import('~/components/EditUser/editUser')
 export default {
     components: {
-        userDetails
+        editUser
     },
     computed: {
         userManagement() {
@@ -15,6 +15,11 @@ export default {
         },
         userDetails() {
             return this.userManagement.getUserDetails()
+        }
+    },
+    methods: {
+        changeUserValue(key, value) {
+            this.userManagement.changePropertyValue(key, value)
         }
     },
     created() {

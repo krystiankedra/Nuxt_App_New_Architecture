@@ -7,6 +7,7 @@
           :user="user"
           :delete-user="deleteUser"
           :go-to-user-details="goToUserDetails"
+          :go-to-edit-user="goToEditUser"
           class="col-12 col-md-4" />
       </div>
     </div>
@@ -28,6 +29,10 @@ export default {
       default: () => null
     },
     goToUserDetails: {
+      type: Function,
+      default: () => null
+    },
+    goToEditUser: {
       type: Function,
       default: () => null
     }

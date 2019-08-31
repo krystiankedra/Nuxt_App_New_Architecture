@@ -1,10 +1,14 @@
 import UsersManagement from '~/management/UsersManagement'
+import UserManagement from '~/management/UserManagement'
 import ExceptionManagement from '~/management/ExceptionManagement'
 import * as MUTATIONS from '~/store/mutationTypes'
 
 export default {
     createUsersManagement({ getters, commit }) {
         commit(MUTATIONS.CREATE_USERS_MANAGEMENT, new UsersManagement(getters, commit))
+    },
+    createUserManagement({ getters, commit }) {
+        commit(MUTATIONS.CREATE_USER_MANAGEMENT, new UserManagement(getters, commit))
     },
     setUsersList({ commit }) {
         try {

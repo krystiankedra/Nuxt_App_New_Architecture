@@ -2,6 +2,9 @@ export default {
     createUsersManagement(state, payload) {
         state.usersManagement = payload
     },
+    createUserManagement(state, payload) {
+        state.userManagement = payload
+    },
     setUsersList(state, payload) {
         state.usersList = payload
     },
@@ -16,5 +19,8 @@ export default {
     },
     setUserDetails(state, payload) {
         state.userDetails = payload
+    },
+    changeUserPropertyValue(state, { key, value }) {
+        state.userDetails[key] = value
     }
 }
