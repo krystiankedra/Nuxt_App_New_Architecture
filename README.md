@@ -1,2 +1,2 @@
-# Nuxt_Application_With_Class_Management
-Nuxt Application with Class Management
+# New Architecture in the Nuxt Application.
+## Nuxt Application with Class Management
