@@ -3,7 +3,7 @@
     <create-user :create-user="createUser" />
     <hr class="col-12">
     <input-emitter :value.sync="searchedPhrase" :placeholder="searchedPhrasePlaceholder" class="mb-3"/>
-    <users-list :users-list="usersList" :delete-user="deleteUser" />
+    <users-list :users-list="usersList" :delete-user="deleteUser" :go-to-user-details="goToUserDetails" />
   </section>
 </template>
 
@@ -38,15 +38,15 @@ export default {
       return this.usersManagement.getUsersList(this.searchedPhrase)
     }
   },
-  created() {
-    this.$store.dispatch(ACTIONS.SET_USERS_LIST)
-  },
   methods: {
     createUser(newUser) {
       this.usersManagement.createUser(newUser)
     },
     deleteUser(userId) {
       this.usersManagement.deleteUser(userId)
+    },
+    goToUserDetails(userId) {
+      this.$router.push(`/user/${userId}`)
     }
   }
 }

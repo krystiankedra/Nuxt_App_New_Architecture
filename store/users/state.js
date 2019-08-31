@@ -1,7 +1,8 @@
 const state = () => ({
     usersManagement: null,
     usersList: [],
-    searchedPhrase: ''
+    searchedPhrase: '',
+    userDetails: {}
 })
 
 export default state

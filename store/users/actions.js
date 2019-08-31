@@ -17,5 +17,9 @@ export default {
         } catch (ex) {
             ExceptionManagement.setException(ex)
         }
+    },
+    setUserDetails({ getters }, payload) {
+        const usersManagement = getters.getUsersManagement
+        usersManagement.setUserDetails(Number(payload))
     }
 }

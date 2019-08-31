@@ -13,5 +13,8 @@ export default {
     },
     setSearchedPhrase(state, payload) {
         state.searchedPhrase = payload
+    },
+    setUserDetails(state, payload) {
+        state.userDetails = payload
     }
 }

@@ -5,7 +5,7 @@
                 <div class="col-6">
                     <img src="~/assets/user.png" class="card-img-top user-image">
                 </div>
-                <div class="col-6 pt-4">
+                <div v-if="!isReadOnlyView" class="col-6 pt-4">
                     <button class="btn btn-outline-danger" @click="deleteUser(user.id)">Delete User</button>
                 </div>
             </div>
@@ -15,11 +15,15 @@
             <div class="row">
                 <span>Age: {{ user.age }}</span>
             </div>
+            <div v-if="!isReadOnlyView" class="row mt-2">
+                <button class="btn btn-outline-primary" @click="goToUserDetails(user.id)">Preview Details</button>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+import { chainValuesToString } from '~/utils/utils'
 export default {
     props: {
         user: {
@@ -29,11 +33,20 @@ export default {
         deleteUser: {
             type: Function,
             default: () => null
+        },
+        goToUserDetails: {
+            type: Function,
+            default: () => null
+        },
+        isReadOnlyView: {
+            type: Boolean,
+            default: () => false
         }
     },
     computed: {
         userFullName() {
-            return `${this.user.firstname} ${this.user.lastname}`
+            const userDataForFullName = [this.user.firstname, this.user.lastname]
+            return chainValuesToString(userDataForFullName)
         }
     }
 }
