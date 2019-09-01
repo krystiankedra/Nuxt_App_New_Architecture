@@ -1,4 +1,5 @@
 import { generateRandomNumber } from '~/utils/utils'
+
 export default class CreateUser {
 
     constructor(user) {
