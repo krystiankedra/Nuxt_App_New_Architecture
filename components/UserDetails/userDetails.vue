@@ -28,7 +28,7 @@ export default {
     }),
     methods: {
         goBack() {
-            this.$router.push('/')
+            this.$router.push('/users-list')
         }
     }
 }

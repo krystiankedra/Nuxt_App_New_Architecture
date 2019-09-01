@@ -13,9 +13,9 @@ export default {
     setUsersList({ commit }) {
         try {
             const response = [
-                { id: 1, firstname: 'Krystian', lastname: 'Kędra', age: 24 },
-                { id: 2, firstname: 'Mateusz', lastname: 'Kowalski', age: 34 },
-                { id: 3, firstname: 'Marek', lastname: 'Nowak', age: 27 },
+                { id: 1, password: 'Krystian1', firstname: 'Krystian', lastname: 'Kędra', age: 24 },
+                { id: 2, password: 'Mateusz2', firstname: 'Mateusz', lastname: 'Kowalski', age: 34 },
+                { id: 3, password: 'Marek3', firstname: 'Marek', lastname: 'Nowak', age: 27 },
             ]
             commit(MUTATIONS.SET_USERS_LIST, response)
         } catch (ex) {

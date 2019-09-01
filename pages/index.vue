@@ -1,61 +1,41 @@
 <template>
-  <section class="container">
-    <create-user :create-user="createUser" />
-    <hr class="col-12">
-    <input-emitter :value.sync="searchedPhrase" :placeholder="searchedPhrasePlaceholder" class="mb-3"/>
-    <users-list
-      :users-list="usersList"
-      :delete-user="deleteUser"
-      :go-to-user-details="goToUserDetails"
-      :go-to-edit-user="goToEditUser"
+    <login
+        class="mt-4"
+        :login-data="loginData"
+        :change-value="changeValue"
+        :submit="submit"
+        :set-dynamic-input-type="setDynamicInputType"
     />
-  </section>
 </template>
 
 <script>
-import * as ACTIONS from '~/store/actionTypes'
-import * as MUTATIONS from '~/store/mutationTypes'
-const createUser = () => import('~/components/CreateUser/createUser')
-const usersList = () => import('~/components/UsersList/usersList')
-const inputEmitter = () => import('~/components/InputEmitter/inputEmitter')
+const login = () => import('~/components/Login/login')
 export default {
-  components: {
-    createUser,
-    usersList,
-    inputEmitter
-  },
-  data: () => ({
-    searchedPhrasePlaceholder: 'Type User...'
-  }),
-  computed: {
-    searchedPhrase: {
-      get() {
-        return this.$store.getters.getSearchedPhrase
-      },
-      set(newValue) {
-        this.$store.commit(MUTATIONS.SET_SEARCHED_PHRASE, newValue)
-      }
+    components: {
+        login
     },
-    usersManagement() {
-      return this.$store.getters.getUsersManagement
+    computed: {
+        authManagement() {
+            return this.$store.getters.getAuthManagement
+        },
+        loginData() {
+            return this.authManagement.loginData()
+        }
     },
-    usersList() {
-      return this.usersManagement.getUsersList(this.searchedPhrase)
+    methods: {
+        changeValue(index, newValue) {
+            this.authManagement.changeValue(index, newValue)
+        },
+        submit() {
+            const checkAuth = this.authManagement.submit()
+            if (checkAuth) {
+                this.authManagement.changeUserAuthState()
+                this.$router.push('/users-list')
+            }
+        },
+        setDynamicInputType(key) {
+            return key.toLowerCase() === 'password' ? 'password' : 'text'
+        }
     }
-  },
-  methods: {
-    createUser(newUser) {
-      this.usersManagement.createUser(newUser)
-    },
-    deleteUser(userId) {
-      this.usersManagement.deleteUser(userId)
-    },
-    goToUserDetails(userId) {
-      this.$router.push(`/user/${userId}`)
-    },
-    goToEditUser(userId) {
-      this.$router.push(`/user/edit/${userId}`)
-    }
-  }
 }
 </script>

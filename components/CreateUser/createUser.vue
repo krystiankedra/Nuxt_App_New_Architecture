@@ -1,13 +1,17 @@
 <template>
     <div class="container mb-3 mt-4">
         <div class="form-group row">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-4">
                 <label>Firstname</label>
                 <input v-model="newUser.firstname" type="text" class="form-control" placeholder="Enter firstname">
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-4">
                 <label>Lastname</label>
                 <input v-model="newUser.lastname" type="text" class="form-control" placeholder="Enter lastname">
+            </div>
+            <div class="col-12 col-md-4">
+                <label>Password</label>
+                <input v-model="newUser.password" type="password" class="form-control" placeholder="Enter password">
             </div>
         </div>
         <div class="form-group row">
@@ -29,7 +33,8 @@ export default {
             newUser: {
                 firstname: null,
                 lastname: null,
-                age: null
+                age: null,
+                password: null
             }
         }
     },
